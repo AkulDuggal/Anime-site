@@ -1,0 +1,54 @@
+<body> 
+  <h1>Welcome to My anime collection</h1>
+
+  <h2 id="anime-title"></h2>
+
+  <div id="video-container"></div>
+
+  <script src="anime.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title");
+
+    const anime = animeList.find(a => a.title === title);
+
+    if (anime) {
+      document.getElementById("anime-title").textContent = anime.title;
+
+      const container = document.getElementById("video-container");
+
+      if (anime.title === "One Piece") {
+        // Only "One Piece" uses the Google Drive iframe
+        const match = anime.video.match(/id=([^&]+)/);
+        if (match) {
+          const fileId = match[1];
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+          iframe.width = "800";
+          iframe.height = "500";
+          iframe.allow = "autoplay";
+          iframe.allowFullscreen = true;
+          container.appendChild(iframe);
+        } else {
+          container.innerHTML = "<p>Invalid Google Drive link</p>";
+        }
+
+      } else {
+        // All other anime use <video>
+        const video = document.createElement("video");
+        video.controls = true;
+        video.width = 800;
+
+        const source = document.createElement("source");
+        source.src = anime.video;
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        container.appendChild(video);
+      }
+
+    } else {
+      document.getElementById("anime-title").textContent = "Anime not found";
+    }
+  </script>
+</body>
