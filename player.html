@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Anime</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="anime-title">Loading...</h1>
+    <video id="anime-video" width="640" height="360" controls>
+        <source id="video-source" src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script src="anime.js"></script>
+    <script>
+        // Get the title from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const titleFromURL = urlParams.get('title');
+
+        console.log("Title from URL:", titleFromURL);
+
+        // Find the matching anime in the list
+        const selectedAnime = animeList.find(anime => anime.title === titleFromURL);
+
+        console.log("Selected anime:", selectedAnime);
+
+        // If found, update the page
+        if (selectedAnime) {
+            document.getElementById("anime-title").textContent = selectedAnime.title;
+            document.getElementById("video-source").src = selectedAnime.video;
+            document.getElementById("anime-video").load(); // reloads the video element with new source
+        } else {
+            document.getElementById("anime-title").textContent = "Anime not found.";
+        }
+    </script>
+</body>
+</html>

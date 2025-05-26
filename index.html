@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My anime site</title>
+        <link ref="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+        <h1>Welcome to My anime collection</h1>
+        
+        <div id="anime-list"></div>
+
+    <!-- Load the anime list -->
+    <script src="anime.js"></script>
+
+    <!-- Display each anime's title -->
+    <script>
+      animeList.forEach(anime => {
+        const div = document.createElement("div");
+
+    // Add the title, image, and watch link
+    div.innerHTML = `
+      <h2>${anime.title}</h2>
+      <img src="${anime.image}" width="200" />
+      <p><a href="player.html?title=${encodeURIComponent(anime.title)}">Watch</a></p>
+    `;
+
+    // Add to the page
+    document.getElementById("anime-list").appendChild(div);
+  });
+    </script>
+    </body>
+</html>
