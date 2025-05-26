@@ -1,0 +1,81 @@
+/* Global body style */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #eee;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #f39c12;
+  margin-bottom: 30px;
+}
+
+/* Anime list container */
+#anime-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Each anime card */
+#anime-list > div {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  width: 220px;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover effect on card */
+#anime-list > div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.8);
+}
+
+/* Anime titles */
+#anime-list h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Images */
+#anime-list img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Watch link styling */
+#anime-list a {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #f39c12;
+  color: #121212;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+#anime-list a:hover {
+  background-color: #d35400;
+}
+
+/* Video player on player.html */
+video#anime-video {
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.7);
+  width: 80%;
+  height: auto;
+}
