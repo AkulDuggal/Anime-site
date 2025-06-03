@@ -79,3 +79,11 @@ video#anime-video {
   width: 80%;
   height: auto;
 }
+
+#video-player {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: black;
+}

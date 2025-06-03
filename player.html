@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Watch Anime</title>
-    <link rel="stylesheet" href="style.css">
+  <title>My anime site</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="anime-title">Loading...</h1>
-    <video id="anime-video" width="640" height="360" controls>
-        <source id="video-source" src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+  <h1>Loading...</h1>
 
-    <script src="anime.js"></script>
-    <script>
-        // Get the title from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const titleFromURL = urlParams.get('title');
+  <!-- Video player -->
+  <video id="video-player" width="800" controls></video>
+  <br>
 
-        console.log("Title from URL:", titleFromURL);
+  <!-- Episode selector -->
+  <label for="episode-select">Choose an episode:</label>
+  <select id="episode-select"></select>
 
-        // Find the matching anime in the list
-        const selectedAnime = animeList.find(anime => anime.title === titleFromURL);
+  <!-- Load anime data -->
+  <script src="anime.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title");
+    const anime = animeList.find(a => a.title === title);
 
-        console.log("Selected anime:", selectedAnime);
+    if (anime) {
+      // Update title on page
+      document.title = anime.title;
+      document.querySelector("h1").textContent = anime.title;
 
-        // If found, update the page
-        if (selectedAnime) {
-            document.getElementById("anime-title").textContent = selectedAnime.title;
-            document.getElementById("video-source").src = selectedAnime.video;
-            document.getElementById("anime-video").load(); // reloads the video element with new source
-        } else {
-            document.getElementById("anime-title").textContent = "Anime not found.";
-        }
-    </script>
+      const video = document.getElementById("video-player");
+      const select = document.getElementById("episode-select");
+
+      // Add each episode to dropdown
+      anime.episodes.forEach((ep, index) => {
+        const option = document.createElement("option");
+        option.value = ep;
+        option.text = `Episode ${index + 1}`;
+        select.appendChild(option);
+      });
+
+      // Load first episode
+      video.src = anime.episodes[0];
+
+      // Change video when user selects another episode
+      select.addEventListener("change", function () {
+        video.src = this.value;
+      });
+    } else {
+      document.body.innerHTML = "<p>Anime not found.</p>";
+    }
+  </script>
 </body>
 </html>
