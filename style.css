@@ -87,3 +87,12 @@ video#anime-video {
   object-fit: contain;
   background: black;
 }
+
+#search-input {
+  padding: 10px;
+  margin: 20px 0;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
