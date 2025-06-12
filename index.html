@@ -11,6 +11,11 @@
         <div>
           <label for="search-input">Search:</label>
           <input type="text" id="search-input" placeholder="e.g. Naruto, One Piece..." />
+          <div>
+            <button id="sort-asc">Sort A–Z</button>
+            <button id="sort-desc">Sort Z–A</button>
+          </div>
+
         </div>
 
         <div id="anime-list"></div>
@@ -52,6 +57,21 @@
     );
 
     displayAnime(filteredList);
+  })
+   // Sort A–Z
+  document.getElementById("sort-asc").addEventListener("click", () => {
+    const sorted = [...animeList].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+    displayAnime(sorted);
+  });
+
+  // Sort Z–A
+  document.getElementById("sort-desc").addEventListener("click", () => {
+    const sorted = [...animeList].sort((a, b) =>
+      b.title.localeCompare(a.title)
+    );
+    displayAnime(sorted);
   });
 
     </script>

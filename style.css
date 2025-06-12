@@ -96,3 +96,18 @@ video#anime-video {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
